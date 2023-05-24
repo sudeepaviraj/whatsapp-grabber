@@ -1,0 +1,17 @@
+{
+  "name": "whatsapp-grabber",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@nodegui/nodegui": "^0.60.0",
+    "prompts": "^2.4.2",
+    "venom-bot": "^5.0.1"
+  }
+}
