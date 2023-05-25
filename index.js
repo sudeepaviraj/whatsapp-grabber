@@ -1,7 +1,7 @@
 const prompts = require('prompts');
 const venom = require('venom-bot');
 const cliProgress = require('cli-progress');
-const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+
 const fs = require("fs")
 
 async function main() {
@@ -11,10 +11,10 @@ async function main() {
     }
 
     async function list_groups(client) {
-        client.getAllChatsGroups().then(async (groups)=>{
+        client.getAllChatsGroups().then(async (groups) => {
             let options = []
             groups.forEach(element => {
-                options = [...options,{ title: element.name, description: 'Get All Group Chats', value: element.id._serialized }]
+                options = [...options, { title: element.name, description: 'Get All Group Chats', value: { id: element.id._serialized, name: element.name } }]
             });
             await prompts([
                 {
@@ -23,17 +23,21 @@ async function main() {
                     message: 'Group Select Menu',
                     choices: options,
                 }
-            ]).then((res)=>{
+            ]).then((res) => {
                 res.group_select.forEach(async group => {
-                    client.getGroupMembers(group).then(async(number)=>{
-                        console.log(`${number.length-1} Numbers Found!`);
-                        bar1.start(number.length-1,0)
-                        number.forEach(async user => {
-                            if(!user.isMe){
-                                console.log(group);
-                                fs.appendFileSync("output.txt",`${user.id.user}\n`)
+                    client.getGroupMembers(group.id).then(async (number) => {
+                        fs.appendFileSync(`output.txt`, `${group.name}\n`)
+                        console.log(`\n${number.length - 1} Numbers Found In ${group.name}\n`);
+                        let bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+                        bar1.start(number.length - 1, 0)
+                        number.forEach(async (user,index) => {
+                            if (!user.isMe) {
+                                fs.appendFileSync(`output.txt`, `${user.id.user}\n`)
+                                bar1.update(index)
                             }
                         });
+                        bar1.stop()
+                        console.log(`\n${group.name} Numbers Saved!\n`);
                     });
                 });
             })
@@ -59,7 +63,7 @@ async function main() {
                 ],
             }
         ]).then((res) => {
-            if (res.login_menu==="get_groups") {
+            if (res.login_menu === "get_groups") {
                 list_groups(client)
             }
         })
@@ -93,13 +97,13 @@ async function main() {
             ],
         }
     ]).then((res) => {
-        if (res.main_menu==="login") {
+        if (res.main_menu === "login") {
             console.log(`
             █▀█ █   █▀▀ ▄▀█ █▀ █▀▀   █ █ █ ▄▀█ █ ▀█▀     
             █▀▀ █▄▄ ██▄ █▀█ ▄█ ██▄   ▀▄▀▄▀ █▀█ █  █  ▄ ▄ ▄`);
             venom_bot()
         }
-        if (res.main_menu==="clear") {
+        if (res.main_menu === "clear") {
             console.log(`
             █▀█ █   █▀▀ ▄▀█ █▀ █▀▀   █ █ █ ▄▀█ █ ▀█▀     
             █▀▀ █▄▄ ██▄ █▀█ ▄█ ██▄   ▀▄▀▄▀ █▀█ █  █  ▄ ▄ ▄`);
@@ -107,7 +111,7 @@ async function main() {
             █▀▀ ▄▀█ █▀▀ █ █ █▀▀   █▀▀ █   █▀▀ ▄▀█ █▀█ █▀▄   █
             █▄▄ █▀█ █▄▄ █▀█ ██▄   █▄▄ █▄▄ ██▄ █▀█ █▀▄ █▄▀   ▄`);
         }
-        if (res.main_menu==="exit") {
+        if (res.main_menu === "exit") {
             console.log(`
             █▀▀ █▀█ █▀█ █▀▄   █▄▄ █▄█ █▀▀   █
             █▄█ █▄█ █▄█ █▄▀   █▄█  █  ██▄   ▄`);
