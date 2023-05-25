@@ -2,8 +2,13 @@ const prompts = require('prompts');
 const venom = require('venom-bot');
 const cliProgress = require('cli-progress');
 const bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
+const fs = require("fs")
 
 async function main() {
+
+    function sleep(ms) {
+        return new Promise((resolve) => setTimeout(resolve, ms));
+    }
 
     async function list_groups(client) {
         client.getAllChatsGroups().then(async (groups)=>{
@@ -23,8 +28,11 @@ async function main() {
                     client.getGroupMembers(group).then(async(number)=>{
                         console.log(`${number.length-1} Numbers Found!`);
                         bar1.start(number.length-1,0)
-                        number.forEach(user => {
-                            console.log(user._id._serialized);
+                        number.forEach(async user => {
+                            if(!user.isMe){
+                                console.log(group);
+                                fs.appendFileSync("output.txt",`${user.id.user}\n`)
+                            }
                         });
                     });
                 });
@@ -37,10 +45,17 @@ async function main() {
             {
                 type: 'select',
                 name: 'login_menu',
-                message: 'Account Menu',
+                message: `
+                █   █▀█ █▀▀ █ █▄ █   █▀ █ █ █▀▀ █▀▀ █▀▀ █▀ █▀   █
+                █▄▄ █▄█ █▄█ █ █ ▀█   ▄█ █▄█ █▄▄ █▄▄ ██▄ ▄█ ▄█   ▄
+                
+                Select Item To Continue...
+
+
+                `,
                 choices: [
-                    { title: 'Get Group Members', description: 'Get All Numbers From Group Chats', value: 'get_groups' },
-                    { title: 'Send Messages To Groups', description: 'Get All Group Chats', value: 'send_message' },
+                    { title: 'Get Group Members 🔢', description: 'Get All Numbers From Group Chats', value: 'get_groups' },
+                    { title: 'Send Messages To Groups 📤', description: 'Get All Group Chats', value: 'send_message' },
                 ],
             }
         ]).then((res) => {
@@ -67,15 +82,36 @@ async function main() {
         {
             type: 'select',
             name: 'main_menu',
-            message: 'Main Menu',
+            message: `
+            █ █ █ █▀▀ █   █▀▀ █▀█ █▀▄▀█ █▀▀
+            ▀▄▀▄▀ ██▄ █▄▄ █▄▄ █▄█ █ ▀ █ ██▄\n\n
+            `,
             choices: [
-                { title: 'Login', description: 'Login To Your Whatsapp Account ', value: 'login' },
-                { title: 'Login', description: 'Login To Your Whatsapp Account ', value: 'login' },
+                { title: 'Login To Whatsapp 🔐', description: 'Login To Your Whatsapp Account', value: 'login' },
+                { title: 'Clear Login Cache 🧹', description: 'Clear Saved Cache', value: 'clear' },
+                { title: 'Exit ❌', description: 'Clear Saved Cache', value: 'exit' },
             ],
         }
     ]).then((res) => {
         if (res.main_menu==="login") {
+            console.log(`
+            █▀█ █   █▀▀ ▄▀█ █▀ █▀▀   █ █ █ ▄▀█ █ ▀█▀     
+            █▀▀ █▄▄ ██▄ █▀█ ▄█ ██▄   ▀▄▀▄▀ █▀█ █  █  ▄ ▄ ▄`);
             venom_bot()
+        }
+        if (res.main_menu==="clear") {
+            console.log(`
+            █▀█ █   █▀▀ ▄▀█ █▀ █▀▀   █ █ █ ▄▀█ █ ▀█▀     
+            █▀▀ █▄▄ ██▄ █▀█ ▄█ ██▄   ▀▄▀▄▀ █▀█ █  █  ▄ ▄ ▄`);
+            console.log(`
+            █▀▀ ▄▀█ █▀▀ █ █ █▀▀   █▀▀ █   █▀▀ ▄▀█ █▀█ █▀▄   █
+            █▄▄ █▀█ █▄▄ █▀█ ██▄   █▄▄ █▄▄ ██▄ █▀█ █▀▄ █▄▀   ▄`);
+        }
+        if (res.main_menu==="exit") {
+            console.log(`
+            █▀▀ █▀█ █▀█ █▀▄   █▄▄ █▄█ █▀▀   █
+            █▄█ █▄█ █▄█ █▄▀   █▄█  █  ██▄   ▄`);
+            process.exit(1)
         }
     })
 }
