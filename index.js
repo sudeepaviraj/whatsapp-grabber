@@ -1,19 +1,24 @@
 const prompts = require('prompts');
 const venom = require('venom-bot');
 const cliProgress = require('cli-progress');
-
 const fs = require("fs")
+const XLSX = require('xlsx');
 
 async function main() {
+	const wb = XLSX.utils.book_new();
 
-    function sleep(ms) {
-        return new Promise((resolve) => setTimeout(resolve, ms));
+
+    async function ExportToExcel(data,index) {
+        const fileName = 'output.xlsx';
+		const ws = XLSX.utils.json_to_sheet(data);
+		XLSX.utils.book_append_sheet(wb, ws, `Sheet ${index}`);
+		XLSX.writeFile(wb, fileName);
     }
 
     async function list_groups(client) {
-        client.getAllChatsGroups().then(async (groups) => {
+        await client.getAllChatsGroups().then(async (groups) => {
             let options = []
-            groups.forEach(element => {
+            groups.forEach((element) => {
                 options = [...options, { title: element.name, description: 'Get All Group Chats', value: { id: element.id._serialized, name: element.name } }]
             });
             await prompts([
@@ -24,18 +29,22 @@ async function main() {
                     choices: options,
                 }
             ]).then((res) => {
-                res.group_select.forEach(async group => {
+                res.group_select.forEach(async (group,group_index) => {
                     client.getGroupMembers(group.id).then(async (number) => {
                         fs.appendFileSync(`output.txt`, `${group.name}\n`)
                         console.log(`\n${number.length - 1} Numbers Found In ${group.name}\n`);
                         let bar1 = new cliProgress.SingleBar({}, cliProgress.Presets.shades_classic);
                         bar1.start(number.length - 1, 0)
-                        number.forEach(async (user,index) => {
+                        let numberlist = []
+                        number.forEach(async (user, index) => {
                             if (!user.isMe) {
                                 fs.appendFileSync(`output.txt`, `${user.id.user}\n`)
-                                bar1.update(index)
+                                numberlist = [...numberlist,{id:index,number:user.id.user,user_id:user.id._serialized,group:group.name}]
+                                bar1.increment()
+                                
                             }
                         });
+                        ExportToExcel(numberlist,group_index)
                         bar1.stop()
                         console.log(`\n${group.name} Numbers Saved!\n`);
                     });
