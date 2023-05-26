@@ -29,6 +29,7 @@ async function main() {
                     choices: options,
                 }
             ]).then((res) => {
+                let count = 1
                 res.group_select.forEach(async (group,group_index) => {
                     client.getGroupMembers(group.id).then(async (number) => {
                         fs.appendFileSync(`output.txt`, `${group.name}\n`)
@@ -41,14 +42,15 @@ async function main() {
                                 fs.appendFileSync(`output.txt`, `${user.id.user}\n`)
                                 numberlist = [...numberlist,{id:index,number:user.id.user,user_id:user.id._serialized,group:group.name}]
                                 bar1.increment()
-                                
                             }
                         });
                         ExportToExcel(numberlist,group_index)
                         bar1.stop()
                         console.log(`\n${group.name} Numbers Saved!\n`);
                     });
+                    count = count+1
                 });
+                console.log(count,res.group_select.length);
             })
         })
     }
@@ -71,9 +73,10 @@ async function main() {
                     { title: 'Send Messages To Groups 📤', description: 'Get All Group Chats', value: 'send_message' },
                 ],
             }
-        ]).then((res) => {
+        ]).then(async (res) => {
             if (res.login_menu === "get_groups") {
                 list_groups(client)
+                console.log("Job Done");
             }
         })
     }
@@ -83,8 +86,8 @@ async function main() {
             .create({
                 session: 'grab',
             })
-            .then((client) =>
-                start(client))
+            .then(async (client) =>
+                await start(client))
             .catch((erro) => {
                 console.log(erro);
             });
