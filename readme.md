@@ -23,7 +23,7 @@ Install my-project with github
 
 ```bash
   git clone https://github.com/sudeepaviraj/whatsapp-grabber.git
-  cd my-project
+  cd whatsapp-grabber
   npm install
   node index.js
 ```
