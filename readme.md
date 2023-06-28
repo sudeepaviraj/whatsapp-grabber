@@ -22,8 +22,8 @@ This software is a powerful tool that can help you to quickly and easily grab th
 Install my-project with github
 
 ```bash
-  git clone my-project
-  cd my-project
+  git clone https://github.com/sudeepaviraj/whatsapp-grabber.git
+  cd whatsapp-grabber
   npm install
   node index.js
 ```
