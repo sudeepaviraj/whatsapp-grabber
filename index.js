@@ -6,8 +6,6 @@ const XLSX = require('xlsx');
 
 async function main() {
 	const wb = XLSX.utils.book_new();
-
-
     async function ExportToExcel(data,index) {
         const fileName = 'output.xlsx';
 		const ws = XLSX.utils.json_to_sheet(data);
