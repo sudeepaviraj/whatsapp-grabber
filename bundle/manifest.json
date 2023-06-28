@@ -1,0 +1,11 @@
+{
+    "name": "WhatsGrabber",
+    "description": "Extract Whatsapp Group Numbers",
+    "version": "1.0",
+    "manifest_version": 3,
+    "action": {
+      "default_icon": "icon.png"
+    },
+    "permissions": ["storage", "declarativeContent", "activeTab", "scripting"],
+    "background":{"service_worker": "main.js"}
+  }
