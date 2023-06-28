@@ -1,7 +1,7 @@
 var numbers = document.evaluate('//*[@id="main"]/header/div[2]/div[2]/span', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
 var number_list = numbers.title.split(",")
 if (numbers.textContent === "click here for group info") {
-    alert("Please Wait And Try Again")
+    alert("Please Wait Few Seconds And Try Again !")
 }
 else {
     var group_name = document.evaluate('//*[@id="main"]/header/div[2]/div[1]/div/span', document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue.textContent
