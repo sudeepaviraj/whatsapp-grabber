@@ -19,5 +19,8 @@
     "prompts": "^2.4.2",
     "venom-bot": "^5.0.6",
     "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "webpack-cli": "^5.1.4"
   }
 }
