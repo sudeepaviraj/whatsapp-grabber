@@ -19,7 +19,7 @@ This Chrome Extension is a powerful tool that can help you to quickly and easily
 
 ## Installation 🛠
 
-Install my-project with github
+Install whatsapp-grabber with github
 
 ```bash
   git clone https://github.com/sudeepaviraj/whatsapp-grabber.git
@@ -33,7 +33,15 @@ Install my-project with github
 
 **Select Extension Bundle Directory**: Navigate to the directory where you downloaded the extension files in step 2, and select the bundle folder of the extension.
 
-8. **Pin the Extension**: Once the extension is loaded, you can verify its presence by checking for its icon in the Chrome toolbar or by accessing its functionality within the browser.
+**Pin the Extension**: Once the extension is loaded, you can verify its presence by checking for its icon in the Chrome toolbar or by accessing its functionality within the browser.
+
+# Usage 👀
+
+- Open Web Whatsapp On Your Computer
+
+- Click on selected Whatsapp Group
+
+- Click Extension Icon
 
 
 ## Roadmap 🛣
@@ -42,12 +50,6 @@ Install my-project with github
 
 - Add more Options
 
-
-## Screenshots 📷
-
-![](https://i.imgur.com/8LrlHDz.png)
-
-![](https://imgur.com/BxIANI9.png)
 
 
 ## Acknowledgements
