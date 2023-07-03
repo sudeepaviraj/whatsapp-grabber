@@ -2,7 +2,7 @@
   "name": "whatsapp-grabber",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "commonjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -23,6 +23,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "electron": "^25.2.0",
     "webpack-cli": "^5.1.4"
   }
 }
