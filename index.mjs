@@ -1,5 +1,11 @@
-import {LaunchWhatsapp} from "./functions/WhatsappGrabber.mjs";
+import {WhatsappClient} from "./functions/WhatsappGrabber.mjs";
 
-const client = LaunchWhatsapp()
+const client = new WhatsappClient
 
-client.evaluate()
+const groups = await client.GetGroups()
+
+console.log(groups)
+
+
+
+
