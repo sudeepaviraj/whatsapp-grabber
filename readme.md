@@ -1,7 +1,7 @@
 
 # Whatsapp Grabber 💉
 
-This Chrome Extension is a powerful tool that can help you to quickly and easily grab the numbers of all the members of a WhatsApp group. It is easy to use and can be used by anyone, regardless of their technical expertise.
+This javascript code is a powerful script that can help you to quickly and easily grab the numbers of all the members of a WhatsApp group. It is easy to use and can be used by anyone, regardless of their technical expertise.
 
 # Features ⚙
 
