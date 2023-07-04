@@ -1,5 +1,5 @@
 /*! For license information please see wppconnect-wa.js.LICENSE.txt */ ! function(e, t) {
-    "object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.WPP = t() : e.WPP = t()
+"object" == typeof exports && "object" == typeof module ? module.exports = t() : "function" == typeof define && define.amd ? define([], t) : "object" == typeof exports ? exports.WPP = t() : e.WPP = t()
 }(self, (() => (() => {
     var __webpack_modules__ = {
             79742: (e, t) => {
@@ -16203,6 +16203,9 @@
             value: !0
         })
     };
+
     var __webpack_exports__ = __webpack_require__(63607);
+    
     return __webpack_exports__
+
 })()));

@@ -25,31 +25,27 @@ Install whatsapp-grabber with github
   git clone https://github.com/sudeepaviraj/whatsapp-grabber.git
 ```
 
-**Open Chrome Extensions Page**: In Chrome, open a new tab and type `chrome://extensions` in the address bar, then press Enter. This will open the Extensions page.
-
-**Enable Developer Mode**: In the top right corner of the Extensions page, toggle the "Developer mode" switch to enable it. This allows you to manually load unpacked extensions.
-
-**Load Unpacked Extension**: Click on the "Load unpacked" button that appears after enabling Developer mode. A file selection dialog will open.
-
-**Select Extension Bundle Directory**: Navigate to the directory where you downloaded the extension files in step 2, and select the bundle folder of the extension.
-
-**Pin the Extension**: Once the extension is loaded, you can verify its presence by checking for its icon in the Chrome toolbar or by accessing its functionality within the browser.
-
 # Usage 👀
 
 - Open Web Whatsapp On Your Computer
 
-- Click on selected Whatsapp Group
+- Press F12 On Your Whatsapp Web
 
-- Click Extension Icon
+- Copy ```index.js``` file content
 
+- Paste file content on chrome developer console
+
+- Press enter
+
+- Select group 
+
+- Your CSV file will download soon
 
 ## Roadmap 🛣
 
 - More Optimized Code
 
 - Add more Options
-
 
 
 ## Acknowledgements
