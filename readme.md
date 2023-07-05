@@ -20,15 +20,6 @@ This javascript code is a powerful script that can help you to quickly and easil
 
 - Build relationships with potential customers or clients by adding them to your contacts
 
-
-## Installation 🛠
-
-Install whatsapp-grabber with github
-
-```bash
-  git clone https://github.com/sudeepaviraj/whatsapp-grabber.git
-```
-
 # Usage 👀
 
 - Open Web Whatsapp On Your Computer
